@@ -3,14 +3,14 @@ from streamlit_searchbox import st_searchbox
 
 # --- Page Setup ---
 home_page = st.Page(
-    page="views/HomePage.py",
+    page="./views/HomePage.py",
     title="Home",
     icon=":material/home:",
     default=True
 )
 
 detail_researcher = st.Page(
-    page="views/Detail.py",
+    page="./views/Detail.py",
     title="Peneliti",
     icon=":material/group:",
     url_path="detail"

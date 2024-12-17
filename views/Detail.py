@@ -113,7 +113,7 @@ def search_by_regex(pattern:str) -> list[tuple[str, str]]:
     
 with st.sidebar:
     st.title("DASHBOARD")
-    st.page_link("views/homepage.py", label="Home", icon="🏠")
+    st.page_link("./views/HomePage.py", label="Home", icon="🏠")
     # st.page_link(detail_researcher, label="Detail", icon=":material/group:")
     
     st.write("**Cari Peneliti**")

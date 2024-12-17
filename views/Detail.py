@@ -26,6 +26,8 @@ home_page_path = os.path.join(os.getcwd(), "views/HomePage.py")
 detail_page_path = os.path.join(os.getcwd(), "views/Detail.py")
 
 
+
+
 # Get Data
 @st.cache_data()
 def get_author_info(author_id:str):
@@ -43,7 +45,9 @@ def extract_basic_info_author(author_info_params):
       'name': author_info_params['name'],
       'affiliation': author_info_params['affiliation'],
       'interests': author_info_params['interests'],
-      'url_picture': author_info_params['url_picture'] if 'url_picture' in author_info_params else "assets/avatar.png"
+      'url_picture': author_info_params['url_picture'] if 'url_picture' in author_info_params else "assets/avatar.png",
+      'citedby' : author_info_params['citedby'],
+      'citedby5y' : author_info_params['citedby5y']
     }
     
     return profile
@@ -178,21 +182,23 @@ with stylable_container(
         }, use_container_width=True)    
         
 with cited_info:
-    st.subheader("Informasi Kutipan", divider=True)
+    st.subheader("Total Kutipan", divider="grey")
     
     
     # Information summary for autho;
     # Not finished yet 
     col1, col2 = st.columns(2)
     with col1:
-        st.metric("Total Kutipan", 200, delta=None, delta_color="normal", help=None, label_visibility="visible")
-        st.metric("Total Kutipan", 200, delta=None, delta_color="normal", help=None, label_visibility="visible")
-
-    with col2:
-        st.metric("Total Kutipan", 200, delta=None, delta_color="normal", help=None, label_visibility="visible")
-        st.metric("Total Kutipan", 200, delta=None, delta_color="normal", help=None, label_visibility="visible")
+        st.metric("**Keseluruhan**", basic_author_info["citedby"], delta=None, delta_color="normal", help=None, label_visibility="visible")
+        # st.write("100")
         
-    st.divider()
+    with col2:
+        st.metric("**5 Tahun Terakhir**", basic_author_info["citedby5y"], delta=None, delta_color="normal", help=None, label_visibility="visible")
+        # st.write("100")
+        
+        
+    # st.divider()
+    st.subheader("Grafik Kutipan", divider="grey")
 
     df_data_cited = pd.DataFrame(graph_cited_data)
-    st.bar_chart(df_data_cited, x="year", y="cites", x_label="Tahun", y_label="Jumlah")
+    st.bar_chart(df_data_cited, x="year", y="cites", x_label="Tahun", y_label="Jumlah", color=(132, 186, 91))

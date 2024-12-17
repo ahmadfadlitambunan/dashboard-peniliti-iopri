@@ -1,6 +1,8 @@
 import streamlit as st
 from streamlit_searchbox import st_searchbox
+import os
 
+# st.write(os.getcwd())
 # --- Page Setup ---
 home_page = st.Page(
     page="./views/HomePage.py",

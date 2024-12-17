@@ -3,9 +3,11 @@ import plotly.express as px
 import pandas as pd
 import json
 import re
+import os
 from scholarly import scholarly
 from streamlit_extras.stylable_container import stylable_container
 from streamlit_searchbox import st_searchbox
+
 # st.rerun()
 
 if 'user' not in st.session_state:
@@ -19,6 +21,10 @@ st.set_page_config(
     page_title="Dashboard Peneliti IOPRI",
     layout="wide"
 )
+# st.write(os.getcwd())
+home_page_path = os.path.join(os.getcwd(), "views/HomePage.py")
+detail_page_path = os.path.join(os.getcwd(), "views/Detail.py")
+
 
 # Get Data
 @st.cache_data()
@@ -113,7 +119,7 @@ def search_by_regex(pattern:str) -> list[tuple[str, str]]:
     
 with st.sidebar:
     st.title("DASHBOARD")
-    st.page_link("./views/HomePage.py", label="Home", icon="🏠")
+    st.page_link(home_page_path, label="Home", icon="🏠")
     # st.page_link(detail_researcher, label="Detail", icon=":material/group:")
     
     st.write("**Cari Peneliti**")

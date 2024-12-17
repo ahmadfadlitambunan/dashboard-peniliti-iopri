@@ -2,6 +2,7 @@ import streamlit as st
 import sqlite3
 import re
 import json
+import os
 from streamlit_extras.stylable_container import stylable_container
 from streamlit_searchbox import st_searchbox
 from datetime import datetime
@@ -17,6 +18,10 @@ st.set_page_config(
     page_title="Dashboard Peneliti IOPRI",
     layout="wide"
 )
+# st.write(os.getcwd())
+home_page_path = os.path.join(os.getcwd(), "views/HomePage.py")
+detail_page_path = os.path.join(os.getcwd(), "views/Detail.py")
+
 
 # extract data_peneliti.json
 with open("./data/data_peneliti.json", "r") as file:
@@ -62,14 +67,14 @@ def search_box():
       
 with st.sidebar:
     st.title("DASHBOARD")
-    st.page_link("./views/HomePage.py", label="Home", icon="🏠")
+    st.page_link(home_page_path, label="Home", icon="🏠")
     # st.page_link(detail_researcher, label="Detail", icon=":material/group:", type='primary', disabled=st.session_state["btn_active_now"] != )
     
     st.write("**Cari Peneliti**")
     selected_user = search_box()
     if st.button("Lihat Detail", type='primary'):
         st.session_state['user'] = selected_user
-        st.switch_page("./views/Detail.py")
+        st.switch_page(detail_page_path)
 
 # style able function
 def styleable_card_container(label_params:str, value_params, delta_params=None):
@@ -157,7 +162,7 @@ with st.container():
             st.write("**Pemuliaan Tanaman**")
         with title_button_pemuliaan[1]:
             if st.button(label="", key="btn_cari_pemuliaan", icon=":material/search:", type='primary', disabled=st.session_state["btn_active_now"] != "pemuliaan"):
-                st.switch_page("./views/Detail.py")
+                st.switch_page(detail_page_path)
         
         st.selectbox(
             label="**Pemuliaan Tanaman**",
@@ -175,7 +180,7 @@ with st.container():
             st.write("**Bioteknologi & Bioindustri**")
         with title_button_biotekdus[1]:
             if st.button(label="", key="btn_cari_biotekdus", icon=":material/search:", type='primary', disabled=st.session_state["btn_active_now"] != "biotekdus"):
-                st.switch_page("./views/Detail.py")
+                st.switch_page(detail_page_path)
         
         st.selectbox(
             label="**Bioteknologi & Bioindustri**",
@@ -222,7 +227,7 @@ with st.container():
             st.write("**Ilmu Tanah dan Agronomi**")
         with title_button_agronomi[1]:
             if st.button(label="", key="btn_cari_agronomi", icon=":material/search:", type='primary', disabled=st.session_state["btn_active_now"] != "agronomi"):
-                st.switch_page("./views/Detail.py")
+                st.switch_page(detail_page_path)
             
         st.selectbox(
             label="**Ilmu Tanah dan Agronomi**",
@@ -240,7 +245,7 @@ with st.container():
             st.write("**Hilirisasi**")
         with title_button_hilirisasi[1]:
             if st.button(label="", key="btn_cari_hilirisasi", icon=":material/search:", type='primary', disabled=st.session_state["btn_active_now"] != "hilirisasi"):
-                st.switch_page("./views/Detail.py")
+                st.switch_page(detail_page_path)
             
         st.selectbox(
             label="**Hilirisasi**",
@@ -287,7 +292,7 @@ with st.container():
             st.write("**Proteksi Tanaman**")
         with title_button_agronomi[1]:
             if st.button(label="", key="btn_cari_proteksi", icon=":material/search:", type='primary', disabled=st.session_state["btn_active_now"] != "proteksi"):
-                st.switch_page("./views/Detail.py")
+                st.switch_page(detail_page_path)
         
     
         st.selectbox(
@@ -308,7 +313,7 @@ with st.container():
             st.write("**Sosio Tekno Ekonomi & Lingkungan**")
         with title_button_agronomi[1]:
             if st.button(label="", key="btn_cari_sosio", icon=":material/search:", type='primary', disabled=st.session_state["btn_active_now"] != "sosio"):
-                st.switch_page("./views/Detail.py")
+                st.switch_page(detail_page_path)
         
             
         st.selectbox(
